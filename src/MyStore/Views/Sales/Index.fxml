@@ -2,21 +2,17 @@
 
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyStore.Controllers.TableSalesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyStore.Controllers.Sales.Index_Controller">
     <center>
         <TableView fx:id="table" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="idColumn" prefWidth="75.0" text="Identificador" visible="false">
+                <TableColumn fx:id="idColumn" prefWidth="75.0" text="Identificador">
                 </TableColumn>
                 <TableColumn fx:id="articleColumn" prefWidth="75.0" text="Artículo">
                 </TableColumn>
@@ -44,4 +40,17 @@
             </padding>
         </HBox>
     </top>
+   <bottom>
+      <HBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#indexData" text="Actualizar" />
+            <StackPane HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#deleteData" text="Eliminar" />
+            <Button fx:id="updateSelectBtn" mnemonicParsing="false" onAction="#updateWindow" text="Modificar" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </bottom>
 </BorderPane>

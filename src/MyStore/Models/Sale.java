@@ -17,6 +17,14 @@ public class Sale {
         this.brand.set(brand);
     }
 
+    public int getId() {
+        return id.get();
+    }
+
+    public SimpleIntegerProperty idProperty() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id.set(id);
     }

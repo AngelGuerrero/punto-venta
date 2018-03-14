@@ -1,14 +1,14 @@
 package MyStore;
 
-import MyStore.Controllers.SalesController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +21,9 @@ public class Main extends Application {
     Button inventoryBtn;
     @FXML
     Button personalBtn;
+
+    @FXML
+    MenuItem closeAppBtn;
 
     @FXML
     BorderPane mainBorder;
@@ -39,27 +42,25 @@ public class Main extends Application {
         launch(args);
     }
 
-    // Lanza la ventana de ventas
-    public void launchFormsSales() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MyStore/Views/SalesView.fxml"));
-        Parent root = loader.load();
+    public void launchFormsSales() {
 
-        // Obtiene la instancia del controlador ventas
-        SalesController SalesController = loader.getController();
+       FXMLLoader root = new FXMLLoader(getClass().getResource("/MyStore/Views/Sales/New.fxml"));
 
-        Scene scene = new Scene(root);
+       Stage w = new Stage();
 
-        Stage formsWindow = new Stage();
+        try {
+            w.setScene(new Scene(root.load(), 400,400));
+            w.setTitle("Formulario para un nuevo artículo");
+            w.setResizable(false);
+            w.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        // Obtiene la instancia de la ventana principal a través de un botón
-        Stage mainWindow = (Stage) mainBorder.getScene().getWindow();
+    }
 
-        // Inicia la ventana en modo MODAL
-        formsWindow.setTitle("Formulario de ventas");
-        formsWindow.initModality(Modality.WINDOW_MODAL);
-        formsWindow.initOwner(mainWindow);
-        formsWindow.setScene(scene);
-        formsWindow.setResizable(false);
-        formsWindow.showAndWait();
+    public void closeApp() {
+        Platform.exit();
+        System.exit(0);
     }
 }
