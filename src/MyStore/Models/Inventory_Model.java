@@ -4,14 +4,14 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Inventory_Model {
-    private final SimpleIntegerProperty id = new SimpleIntegerProperty();
+    private final SimpleStringProperty id = new SimpleStringProperty();
     private final SimpleStringProperty office = new SimpleStringProperty();
     private final SimpleStringProperty product = new SimpleStringProperty();
     private final SimpleIntegerProperty quantity = new SimpleIntegerProperty();
     private final SimpleStringProperty brand = new SimpleStringProperty();
     private final SimpleStringProperty provider = new SimpleStringProperty();
 
-    public Inventory_Model(int id, String office, String product, int quantity, String brand, String provider) {
+    public Inventory_Model(String id, String office, String product, int quantity, String brand, String provider) {
         this.id.set(id);
         this.office.set(office);
         this.product.set(product);
@@ -20,15 +20,15 @@ public class Inventory_Model {
         this.provider.set(provider);
     }
 
-    public int getId() {
+    public String getId() {
         return id.get();
     }
 
-    public SimpleIntegerProperty idProperty() {
+    public SimpleStringProperty idProperty() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id.set(id);
     }
 

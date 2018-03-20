@@ -95,9 +95,9 @@ public class Sales_Controller extends Main implements Initializable {
 
                 System.out.println(
                         this.rs.getInt("idventas") + " - " +
-                        this.rs.getString("articulo") + " - " +
-                        this.rs.getDouble("precio") + " - " +
-                        this.rs.getString("marca"));
+                                this.rs.getString("articulo") + " - " +
+                                this.rs.getDouble("precio") + " - " +
+                                this.rs.getString("marca"));
             }
 
         } catch (SQLException e) {

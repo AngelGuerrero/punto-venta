@@ -15,7 +15,7 @@ public class MyConnection {
     private Connection connection;
 
     public MyConnection() {
-        this.username = "masterpuntoventa";
+        this.username = "master";
         this.password = "master";
         this.database = "puntoventa_db";
     }

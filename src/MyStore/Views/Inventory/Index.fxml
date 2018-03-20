@@ -44,9 +44,9 @@
    <bottom>
       <HBox spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Actualizar" />
+            <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#indexData" text="Actualizar" />
             <StackPane HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" text="Eliminar" />
+            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deleteData" text="Eliminar" />
             <Button mnemonicParsing="false" text="Editar" />
          </children>
          <padding>
