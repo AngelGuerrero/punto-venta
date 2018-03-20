@@ -4,13 +4,13 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Sale {
+public class Sale_Model {
     private final SimpleIntegerProperty id = new SimpleIntegerProperty();
     private final SimpleStringProperty article = new SimpleStringProperty("");
     private final SimpleDoubleProperty price = new SimpleDoubleProperty(0.0);
     private final SimpleStringProperty brand = new SimpleStringProperty("");
 
-    public Sale(int id, String article, Double price, String brand) {
+    public Sale_Model(int id, String article, Double price, String brand) {
         this.id.set(id);
         this.article.set(article);
         this.price.set(price);

@@ -37,7 +37,7 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="inventoryBtn" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" text="Inventarios" />
+                  <Button fx:id="inventoryBtn" mnemonicParsing="false" onAction="#launchFormsInventory" prefHeight="40.0" prefWidth="110.0" text="Inventarios" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">

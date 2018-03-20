@@ -1,6 +1,6 @@
 package MyStore.Controllers.Sales;
 
-import MyStore.Models.Sale;
+import MyStore.Models.Sale_Model;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,14 +13,14 @@ public class Index_Controller extends Sales_Controller implements Initializable 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        dataSales = FXCollections.observableArrayList();
+        dataSaleModels = FXCollections.observableArrayList();
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<Sale, Double>("id"));
-        articleColumn.setCellValueFactory(new PropertyValueFactory<Sale, String>("article"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Sale, Double>("price"));
-        brandColumn.setCellValueFactory(new PropertyValueFactory<Sale, String>("brand"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<Sale_Model, Integer>("id"));
+        articleColumn.setCellValueFactory(new PropertyValueFactory<Sale_Model, String>("article"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Sale_Model, Double>("price"));
+        brandColumn.setCellValueFactory(new PropertyValueFactory<Sale_Model, String>("brand"));
 
-        table.setItems(dataSales);
+        table.setItems(dataSaleModels);
         this.indexData();
     }
 

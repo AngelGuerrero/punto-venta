@@ -24,6 +24,9 @@
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
         </TableView>
     </center>
     <top>
@@ -49,7 +52,7 @@
             <Button fx:id="updateSelectBtn" mnemonicParsing="false" onAction="#updateWindow" text="Modificar" />
          </children>
          <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
    </bottom>

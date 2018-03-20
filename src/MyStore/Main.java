@@ -1,5 +1,6 @@
 package MyStore;
 
+import MyStore.Libs.MyConnection;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -12,8 +13,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Main extends Application {
+
+    // Connection variables
+    public MyConnection connection;
+    public Statement stmt;
+    public ResultSet rs;
 
     @FXML
     Button salesBtn;
@@ -42,9 +51,10 @@ public class Main extends Application {
         launch(args);
     }
 
+
     public void launchFormsSales() {
 
-       FXMLLoader root = new FXMLLoader(getClass().getResource("/MyStore/Views/Sales/New.fxml"));
+       FXMLLoader root = new FXMLLoader(getClass().getResource("/MyStore/Views/Sale/New.fxml"));
 
        Stage w = new Stage();
 
@@ -59,8 +69,37 @@ public class Main extends Application {
 
     }
 
+    public void launchFormsInventory() {
+        FXMLLoader root = new FXMLLoader(getClass().getResource("/MyStore/Views/Inventory/New.fxml"));
+
+        Stage w = new Stage();
+
+        try {
+            w.setScene(new Scene(root.load()));
+            w.setTitle("Nuevo registro de inventario");
+            w.setResizable(false);
+            w.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void closeApp() {
         Platform.exit();
         System.exit(0);
+    }
+
+    protected void connect() {
+
+        this.connection = new MyConnection();
+        try {
+
+            this.connection.setConnection();
+            this.stmt = this.connection.getConnection().createStatement();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }

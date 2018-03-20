@@ -1,5 +1,7 @@
 package MyStore.Libs;
 
+import javafx.scene.control.Alert;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -29,6 +31,8 @@ public class MyConnection {
             System.out.println("Conexión establecida con la base de datos");
             retval = true;
         } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "No se pa podido establecer la conexión con la base de datos.");
+            alert.show();
             System.out.println("No se ha podido establecer la conexión con la base de datos: " + e.getMessage());
         }
         return retval;

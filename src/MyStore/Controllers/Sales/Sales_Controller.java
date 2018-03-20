@@ -1,7 +1,8 @@
 package MyStore.Controllers.Sales;
 
 import MyStore.Libs.MyConnection;
-import MyStore.Models.Sale;
+import MyStore.Main;
+import MyStore.Models.Sale_Model;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,13 +14,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 
 
-public class Sales_Controller implements Initializable {
+public class Sales_Controller extends Main implements Initializable {
 
     // Inputs
     @FXML
@@ -43,16 +42,16 @@ public class Sales_Controller implements Initializable {
     Alert alert;
 
     // Sources Views
-    String indexView = "/MyStore/Views/Sales/Index.fxml";
-    String newView = "/MyStore/Views/Sales/New.fxml";
-    String editView = "/MyStore/Views/Sales/Edit.fxml";
+    String indexView = "/MyStore/Views/Sale/Index.fxml";
+    String newView = "/MyStore/Views/Sale/New.fxml";
+    String editView = "/MyStore/Views/Sale/Edit.fxml";
 
     // Shared data
     public int idventas;
 
     // Table
     @FXML
-    public TableView<Sale> table;
+    public TableView<Sale_Model> table;
     @FXML
     public TableColumn idColumn;
     @FXML
@@ -63,51 +62,30 @@ public class Sales_Controller implements Initializable {
     public TableColumn brandColumn;
 
     @FXML
-    public ObservableList<Sale> dataSales;
-
-
-    // Connection variables
-    public MyConnection connection;
-    public Statement stmt;
-    public ResultSet rs;
+    public ObservableList<Sale_Model> dataSaleModels;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
 
-
-    protected void connect() {
-
-        this.connection = new MyConnection();
-        try {
-
-            this.connection.setConnection();
-            this.stmt = this.connection.getConnection().createStatement();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    // CRUD of Sales
+    // CRUD of Sale
     @FXML
     public void indexData() {
 
         // Set the connection with the database
         this.connect();
 
-        // Clear the data of the dataSales list
-        dataSales.clear();
+        // Clear the data of the dataSaleModels list
+        dataSaleModels.clear();
 
         try {
 
             this.rs = this.stmt.executeQuery("SELECT * FROM ventas");
 
             while (this.rs.next()) {
-                dataSales.add(
-                        new Sale(
+                dataSaleModels.add(
+                        new Sale_Model(
                                 this.rs.getInt("idventas"),
                                 this.rs.getString("articulo"),
                                 this.rs.getDouble("precio"),
@@ -117,9 +95,9 @@ public class Sales_Controller implements Initializable {
 
                 System.out.println(
                         this.rs.getInt("idventas") + " - " +
-                                this.rs.getString("articulo") + " - " +
-                                this.rs.getDouble("precio") + " - " +
-                                this.rs.getString("marca"));
+                        this.rs.getString("articulo") + " - " +
+                        this.rs.getDouble("precio") + " - " +
+                        this.rs.getString("marca"));
             }
 
         } catch (SQLException e) {
@@ -165,9 +143,9 @@ public class Sales_Controller implements Initializable {
 
     @FXML
     private void updateWindow() {
-        Sale saleSelect = table.getSelectionModel().getSelectedItem();
+        Sale_Model saleModelSelect = table.getSelectionModel().getSelectedItem();
 
-        if (saleSelect != null) {
+        if (saleModelSelect != null) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(this.editView));
 
             try {
@@ -185,12 +163,12 @@ public class Sales_Controller implements Initializable {
 
             Edit_Controller edit_controller = fxmlLoader.getController();
 
-            edit_controller.idventas = saleSelect.getId();
+            edit_controller.idventas = saleModelSelect.getId();
 
-            edit_controller.idventasLabel.setText(Integer.toString(saleSelect.getId()));
-            edit_controller.articleTextfield.setText(saleSelect.getArticle());
-            edit_controller.priceTextfield.setText(Double.toString(saleSelect.getPrice()));
-            edit_controller.brandTextfield.setText(saleSelect.getBrand());
+            edit_controller.idventasLabel.setText(Integer.toString(saleModelSelect.getId()));
+            edit_controller.articleTextfield.setText(saleModelSelect.getArticle());
+            edit_controller.priceTextfield.setText(Double.toString(saleModelSelect.getPrice()));
+            edit_controller.brandTextfield.setText(saleModelSelect.getBrand());
         } else {
             alert = new Alert(Alert.AlertType.WARNING, "No se ha seleccionado ningún dato.");
             alert.show();
@@ -232,7 +210,7 @@ public class Sales_Controller implements Initializable {
     @FXML
     public void deleteData() {
 
-        Sale selectedItem = table.getSelectionModel().getSelectedItem();
+        Sale_Model selectedItem = table.getSelectionModel().getSelectedItem();
 
         if (selectedItem != null) {
             this.connect();
