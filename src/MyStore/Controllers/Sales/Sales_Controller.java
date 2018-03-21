@@ -142,40 +142,6 @@ public class Sales_Controller extends Main implements Initializable {
     }
 
     @FXML
-    private void updateWindow() {
-        Sale_Model saleModelSelect = salesTable.getSelectionModel().getSelectedItem();
-
-        if (saleModelSelect != null) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(this.editView));
-
-            try {
-                Stage w = new Stage();
-                w.setScene(new Scene(fxmlLoader.load()));
-                w.initModality(Modality.WINDOW_MODAL);
-                w.initOwner(updateSelectBtn.getScene().getWindow());
-                w.setTitle("Editando el artículo");
-                w.show();
-
-            } catch (IOException e) {
-                System.out.println("Error: " + e.getMessage());
-                System.out.println("No se ha podido cargar el archivo: " + this.editView);
-            }
-
-            Edit_Controller edit_controller = fxmlLoader.getController();
-
-            edit_controller.idventas = saleModelSelect.getId();
-
-            edit_controller.idventasLabel.setText(Integer.toString(saleModelSelect.getId()));
-            edit_controller.articleTextfield.setText(saleModelSelect.getArticle());
-            edit_controller.priceTextfield.setText(Double.toString(saleModelSelect.getPrice()));
-            edit_controller.brandTextfield.setText(saleModelSelect.getBrand());
-        } else {
-            alert = new Alert(Alert.AlertType.WARNING, "No se ha seleccionado ningún dato.");
-            alert.show();
-        }
-    }
-
-    @FXML
     public void updateData() {
         String query = "";
         if (!articleTextfield.getText().equals("") && !priceTextfield.getText().equals("") && !brandTextfield.getText().equals("")) {
@@ -242,6 +208,40 @@ public class Sales_Controller extends Main implements Initializable {
             alert.show();
         }
 
+    }
+
+    @FXML
+    private void updateWindow() {
+        Sale_Model saleModelSelect = salesTable.getSelectionModel().getSelectedItem();
+
+        if (saleModelSelect != null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(this.editView));
+
+            try {
+                Stage w = new Stage();
+                w.setScene(new Scene(fxmlLoader.load()));
+                w.initModality(Modality.WINDOW_MODAL);
+                w.initOwner(updateSelectBtn.getScene().getWindow());
+                w.setTitle("Editando el artículo");
+                w.show();
+
+            } catch (IOException e) {
+                System.out.println("Error: " + e.getMessage());
+                System.out.println("No se ha podido cargar el archivo: " + this.editView);
+            }
+
+            Edit_Controller edit_controller = fxmlLoader.getController();
+
+            edit_controller.idventas = saleModelSelect.getId();
+
+            edit_controller.idventasLabel.setText(Integer.toString(saleModelSelect.getId()));
+            edit_controller.articleTextfield.setText(saleModelSelect.getArticle());
+            edit_controller.priceTextfield.setText(Double.toString(saleModelSelect.getPrice()));
+            edit_controller.brandTextfield.setText(saleModelSelect.getBrand());
+        } else {
+            alert = new Alert(Alert.AlertType.WARNING, "No se ha seleccionado ningún dato.");
+            alert.show();
+        }
     }
 
     @FXML

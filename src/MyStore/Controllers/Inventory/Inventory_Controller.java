@@ -30,6 +30,12 @@ public class Inventory_Controller extends Main implements Initializable {
     @FXML
     public Button deleteBtn;
 
+    // Edit window Buttons
+    @FXML
+    public Button cancelEditBtn;
+    @FXML
+    public Button confirmEditBtn;
+
     // Texts Fields
     @FXML
     public TextField idinventoryTextfield;
@@ -159,6 +165,46 @@ public class Inventory_Controller extends Main implements Initializable {
     }
 
     @FXML
+    public void updateData() {
+        if (!idinventoryTextfield.getText().isEmpty() &&
+            !officeTextfield.getText().isEmpty() &&
+            !productTextfield.getText().isEmpty() &&
+            !quantityTextfield.getText().isEmpty() &&
+            !brandTextfield.getText().isEmpty() &&
+            !providerTextfield.getText().isEmpty()) {
+
+            this.connect();
+
+            String query =
+                    "UPDATE inventarios SET " +
+                    "idinventario = '" + idinventoryTextfield.getText() + "', " +
+                    "sucursal = '" + officeTextfield.getText() + "', " +
+                    "producto = '" + providerTextfield.getText() + "', " +
+                    "cantidad = " + quantityTextfield.getText() + ", " +
+                    "marca = '" + brandTextfield.getText() + "', " +
+                    "proveedor = '" + providerTextfield.getText() +
+                    " WHERE idinventario = '" + idinventoryTextfield.getText() + "'";
+
+            System.out.println("Ejecutando query: " + query);
+
+            try {
+                this.stmt.executeUpdate(query);
+
+                alert = new Alert(Alert.AlertType.INFORMATION, "Se ha actualizado correctamente el registro.");
+                alert.show();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            this.connection.closeConnection();
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR, "Faltan campos por llenar");
+            alert.show();
+        }
+    }
+
+    @FXML
     public void updateWindow() {
         Inventory_Model inventoryModelSelect = inventoryTable.getSelectionModel().getSelectedItem();
 
@@ -172,6 +218,17 @@ public class Inventory_Controller extends Main implements Initializable {
                 w.initOwner(updateBtn.getScene().getWindow());
                 w.setTitle("Edición de inventario");
                 w.show();
+
+                Edit_Controller edit_controller = fxmlLoader.getController();
+
+                edit_controller.idinventoryTextfield.setText(inventoryModelSelect.getId().toString());
+                edit_controller.officeTextfield.setText(inventoryModelSelect.getOffice());
+                edit_controller.productTextfield.setText(inventoryModelSelect.getProduct());
+                edit_controller.quantityTextfield.setText(Integer.toString(inventoryModelSelect.getQuantity()));
+                edit_controller.brandTextfield.setText(inventoryModelSelect.getBrand());
+                edit_controller.providerTextfield.setText(inventoryModelSelect.getProvider());
+
+
             } catch (IOException e) {
                 System.out.println("No se ha podido cargar el archvivo de Editar.fxml");
             }
@@ -250,6 +307,12 @@ public class Inventory_Controller extends Main implements Initializable {
     @FXML
     public void quitNewInventory() {
         Stage w = (Stage) quitBtn.getScene().getWindow();
+        w.close();
+    }
+
+    @FXML
+    public void quitEditWindow() {
+        Stage w = (Stage) cancelEditBtn.getScene().getWindow();
         w.close();
     }
 }
