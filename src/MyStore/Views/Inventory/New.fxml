@@ -29,7 +29,7 @@
    <bottom>
       <HBox spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="quitBtn" mnemonicParsing="false" prefWidth="60.0" style="-fx-background-color: #ff6464;" text="Salir" textFill="WHITE" />
+            <Button fx:id="quitBtn" mnemonicParsing="false" onAction="#quitNewInventory" prefWidth="60.0" style="-fx-background-color: #ff6464;" text="Salir" textFill="WHITE" />
             <StackPane HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#indexWindow" text="Visualizar" />
             <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#clearData" text="Limpiar" />

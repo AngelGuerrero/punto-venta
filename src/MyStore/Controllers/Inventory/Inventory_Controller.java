@@ -46,6 +46,7 @@ public class Inventory_Controller extends Main implements Initializable {
 
     // Sources views
     String indexView = "/MyStore/Views/Inventory/Index.fxml";
+    String editView = "/MyStore/Views/Inventory/Edit.fxml";
 
     // Table
     @FXML
@@ -158,17 +159,39 @@ public class Inventory_Controller extends Main implements Initializable {
     }
 
     @FXML
+    public void updateWindow() {
+        Inventory_Model inventoryModelSelect = inventoryTable.getSelectionModel().getSelectedItem();
+
+        if (inventoryModelSelect != null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(this.editView));
+
+            try {
+                Stage w = new Stage();
+                w.setScene(new Scene(fxmlLoader.load()));
+                w.initModality(Modality.WINDOW_MODAL);
+                w.initOwner(updateBtn.getScene().getWindow());
+                w.setTitle("Edición de inventario");
+                w.show();
+            } catch (IOException e) {
+                System.out.println("No se ha podido cargar el archvivo de Editar.fxml");
+            }
+        } else {
+            alert = new Alert(Alert.AlertType.WARNING, "No se ha seleccionado ningún elemento de la tabla");
+            alert.show();
+        }
+    }
+
+    @FXML
     public void deleteData() {
 
         Inventory_Model selectedItem = inventoryTable.getSelectionModel().getSelectedItem();
 
-        String query = "DELETE FROM inventarios WHERE idinventario = '" + selectedItem.getId() + "';";
-
         if (selectedItem != null) {
             this.connect();
 
-            try {
+            String query = "DELETE FROM inventarios WHERE idinventario = '" + selectedItem.getId() + "';";
 
+            try {
                 stmt.executeUpdate(query);
                 inventoryTable.getItems().remove(selectedItem);
 
@@ -222,5 +245,11 @@ public class Inventory_Controller extends Main implements Initializable {
         brandTextfield.clear();
         productTextfield.clear();
         providerTextfield.clear();
+    }
+
+    @FXML
+    public void quitNewInventory() {
+        Stage w = (Stage) quitBtn.getScene().getWindow();
+        w.close();
     }
 }

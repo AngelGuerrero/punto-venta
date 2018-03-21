@@ -20,7 +20,7 @@ public class Index_Controller extends Sales_Controller implements Initializable 
         priceColumn.setCellValueFactory(new PropertyValueFactory<Sale_Model, Double>("price"));
         brandColumn.setCellValueFactory(new PropertyValueFactory<Sale_Model, String>("brand"));
 
-        table.setItems(dataSaleModels);
+        salesTable.setItems(dataSaleModels);
         this.indexData();
     }
 

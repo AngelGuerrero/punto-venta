@@ -51,7 +51,7 @@ public class Sales_Controller extends Main implements Initializable {
 
     // Table
     @FXML
-    public TableView<Sale_Model> table;
+    public TableView<Sale_Model> salesTable;
     @FXML
     public TableColumn idColumn;
     @FXML
@@ -143,7 +143,7 @@ public class Sales_Controller extends Main implements Initializable {
 
     @FXML
     private void updateWindow() {
-        Sale_Model saleModelSelect = table.getSelectionModel().getSelectedItem();
+        Sale_Model saleModelSelect = salesTable.getSelectionModel().getSelectedItem();
 
         if (saleModelSelect != null) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(this.editView));
@@ -210,7 +210,7 @@ public class Sales_Controller extends Main implements Initializable {
     @FXML
     public void deleteData() {
 
-        Sale_Model selectedItem = table.getSelectionModel().getSelectedItem();
+        Sale_Model selectedItem = salesTable.getSelectionModel().getSelectedItem();
 
         if (selectedItem != null) {
             this.connect();
@@ -220,7 +220,7 @@ public class Sales_Controller extends Main implements Initializable {
             try {
 
                 stmt.executeUpdate(query);
-                table.getItems().remove(selectedItem);
+                salesTable.getItems().remove(selectedItem);
 
                 alert = new Alert(Alert.AlertType.INFORMATION, "Se ha eliminado correctamente el registro");
                 alert.setHeaderText("Eliminación de registro");
