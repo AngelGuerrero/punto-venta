@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyStore.Controllers.Inventory.Index_Controller">
+   <center>
+      <TableView fx:id="inventoryTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idInventoryColumn" editable="false" prefWidth="101.0" text="Clave producto" />
+          <TableColumn fx:id="officeColumn" prefWidth="71.0" text="Sucursal" />
+            <TableColumn fx:id="productColumn" prefWidth="75.0" text="Producto" />
+            <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Cantidad" />
+            <TableColumn fx:id="brandColumn" prefWidth="75.0" text="Marca" />
+            <TableColumn fx:id="providerColumn" prefWidth="75.0" text="Provedor" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </TableView>
+   </center>
+   <top>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Registro de inventarios">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#indexData" text="Actualizar" />
+            <StackPane HBox.hgrow="ALWAYS" />
+            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deleteData" text="Eliminar" />
+            <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#updateWindow" text="Editar" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MyStore.Controllers.Inventory.New_Controller">
+   <top>
+      <HBox alignment="CENTER">
+         <children>
+            <Label text="Inventarios">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="quitBtn" mnemonicParsing="false" onAction="#quitNewInventory" prefWidth="60.0" style="-fx-background-color: #ff6464;" text="Salir" textFill="WHITE" />
+            <StackPane HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#indexWindow" text="Visualizar" />
+            <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#clearData" text="Limpiar" />
+            <StackPane HBox.hgrow="ALWAYS" />
+            <Button fx:id="insertBtn" mnemonicParsing="false" onAction="#newData" style="-fx-background-color: #228b22;" text="Capturar" textFill="WHITE" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="130.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Clave del producto">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Sucursal" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="idinventoryTextfield" GridPane.columnIndex="1" />
+            <TextField fx:id="officeTextfield" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="productTextfield" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="quantityTextfield" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="brandTextfield" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="providerTextfield" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="Producto" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Cantidad" GridPane.rowIndex="3">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Marca" GridPane.rowIndex="4">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Proveedor" GridPane.rowIndex="5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </GridPane>
+   </center>
+</BorderPane>
